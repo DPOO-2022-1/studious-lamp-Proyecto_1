@@ -10,7 +10,7 @@ public class Proyecto {
 	
 	Usuario principal;
 	
-	public Proyecto(String nom, String desc, String fechIn, String fechFin, String tip) {
+	public Proyecto(String nom, String desc, String fechIn, String fechFin, String tip, Usuario usu) {
 		
 		nombre = nom;
 		descripcion = desc;
@@ -18,6 +18,12 @@ public class Proyecto {
 		fechaFinal = fechFin;
 		tipo = tip;
 		
+		principal = usu;
+		
+	}
+	
+	public String darNombre() {
+		return nombre;
 	}
 	
 }

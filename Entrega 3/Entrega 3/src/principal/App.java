@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class App {
 	
 	Usuario usuarioActual;
-	Proyecto proyectoActual;
+	Proyecto proyectoActual = null;
 	
 	public App() {
 		System.out.println("-------------------- APP -------------------- \n");
@@ -32,7 +32,7 @@ public class App {
 			
 			if (opcion == 1) {
 				
-				//Crear proy
+				CrearProyecto();
 			}
 			else if (opcion == 0){
 				
@@ -44,7 +44,34 @@ public class App {
 		}
 		
 	}
-
+	
+	public void CrearProyecto() {
+		
+		String nombre = input("Ingrese el nombre del proyecto:");
+		String descripcion = input("Ingrese la descripcion del proyecto:");
+		String fechaInicio = input("Ingrese la fecha inicial del proyecto:");
+		
+		String pregunta1 = input("se conoce la fecha final (S/N)");
+		
+		String fechaFin = "a";
+		
+		if (pregunta1 == "S") {
+			
+			fechaFin = input("Ingrese la fecha final proyecto (en caso de no tener escriba No):");
+			
+		} else {
+			
+			fechaFin = "no";
+			
+		}
+		
+		String tipo = input("Ingrese el tipo del proyecto:");
+			
+		
+		proyectoActual = new Proyecto(nombre, descripcion, fechaInicio, fechaFin, tipo, usuarioActual);
+		
+	}
+	
 	// Metodos Imprimir
 	
 	public void ImprimirInfoUsuario() {
@@ -52,6 +79,16 @@ public class App {
 	}
 	
 	public void ImprimirMenu() {
+		
+		if (proyectoActual == null) {
+			
+			System.out.println("\nNo hay proyecto activo \n");
+			
+		} else {
+			
+			System.out.println("\nEl proyecto actual es: " + proyectoActual.darNombre());
+			
+		}	
 		
 		System.out.println("1) Crear proyecto");
 		
