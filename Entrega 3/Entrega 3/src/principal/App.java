@@ -6,18 +6,18 @@ import java.io.InputStreamReader;
 
 public class App {
 	
-	Usuario usuarioActual;
-	Proyecto proyectoActual = null;
+	private Usuario usuarioActual;
+	private Proyecto proyectoActual = null;
 	
 	public App() {
-		System.out.println("-------------------- APP -------------------- \n");
+		System.out.println("-------------------- APP -------------------- ");
 		
-		System.out.println("Por Favor ingrese sus datos");
+		System.out.println("Por Favor ingrese sus datos:");
 		
-		String nombre = input("nombre del usuario: ");
-		String correo = input("correo del usuario: ");
+		String nombre = input("Nombre del usuario: \n");
+		String correo = input("Correo del usuario: \n");
 		
-		usuarioActual = new Usuario(nombre, correo);
+		this.usuarioActual = new Usuario(nombre, correo);
 		
 	}
 	
@@ -28,12 +28,16 @@ public class App {
 		boolean continuar = true;
 		while (continuar) {
 			ImprimirMenu();
-			int opcion = Integer.parseInt(input("Elige una opcion: "));
+			int opcion = Integer.parseInt(input("Elige una opcion: \n"));
 			
 			if (opcion == 1) {
 				
-				CrearProyecto();
+				crearProyecto();
 			}
+			else if (opcion == 2){
+				
+				crearActividad();
+			} 
 			else if (opcion == 0){
 				
 				continuar = false;
@@ -45,13 +49,51 @@ public class App {
 		
 	}
 	
-	public void CrearProyecto() {
+	public void crearActividad() {
 		
-		String nombre = input("Ingrese el nombre del proyecto:");
-		String descripcion = input("Ingrese la descripcion del proyecto:");
-		String fechaInicio = input("Ingrese la fecha inicial del proyecto:");
+		Actividad actividad= new Actividad("", "", "", "", this.usuarioActual);
 		
-		String pregunta1 = input("se conoce la fecha final (S/N)");
+		if(proyectoActual == null) 
+		{
+			System.out.println("*ERROR*\n No hay un proyecto activo, por favor cargue un proyecto o cree uno nuevo para agregar una nueva actividad.");
+		}
+		else
+		{
+			String nombre = input("Ingrese el nombre de la actividad:\n");
+			actividad.setTitulo(nombre);
+			String descripcion = input("Ingrese una descripción para la actividad:\n");
+			actividad.setDescripcion(descripcion);
+			String fechaIn = input("Digite la fecha de inicio de la actividad:\n");
+			actividad.setFecha(fechaIn);
+			String tipo = input("Digite el tipo de actividad que se realiza:\n");
+			actividad.setTipo(tipo);
+			System.out.println("Por defecto el usuario que realiza la actividad es el usuario actual ¿Desea cambiar el usuario que la realiza?\n");
+			String cambio= input("(S/N):\n");
+			if(cambio.equals("S")) 
+			{
+				String nusuario = input("Digite el nombre del usuario: \n");
+				String cusuario = input("Digite el correo del usuario: \n");
+				Usuario nuevo = new Usuario(nusuario, cusuario);
+				actividad.setCreador(nuevo);
+			}
+			else 
+			{
+				actividad.setCreador(this.usuarioActual);
+			}
+			
+			proyectoActual.agregarActividad(actividad);
+			
+		}
+		
+	}
+	
+	public void crearProyecto() {
+		
+		String nombre = input("Ingrese el nombre del proyecto:\n");
+		String descripcion = input("Ingrese la descripcion del proyecto:\n");
+		String fechaInicio = input("Ingrese la fecha inicial del proyecto:\n");
+		
+		String pregunta1 = input("se conoce la fecha final (S/N)\n");
 		
 		String fechaFin = "a";
 		
@@ -90,7 +132,9 @@ public class App {
 			
 		}	
 		
-		System.out.println("1) Crear proyecto");
+		System.out.println("1) Crear nuevo proyecto");
+		
+		System.out.println("2) Agregar una actividad al proyecto actual:");
 		
 		System.out.println("0) Cerrar App");
 	}

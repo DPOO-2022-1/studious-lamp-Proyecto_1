@@ -6,11 +6,11 @@ public class Actividad {
 	private String descripcion;
 	private String tipo;
 	private String fecha;
-	private String creador;
+	private Usuario creador;
 	private String horaTotal;
 	private String horaParcial;
 	
-	public Actividad(String title, String description, String type, String date, String creator) 
+	public Actividad(String title, String description, String type, String date, Usuario creator) 
 	{
 		this.setTitulo(title);
 		this.setDescripcion(description);
@@ -51,11 +51,11 @@ public class Actividad {
 		this.fecha = fecha;
 	}
 
-	public String getCreador() {
+	public Usuario getCreador() {
 		return creador;
 	}
 
-	public void setCreador(String creador) {
+	public void setCreador(Usuario creador) {
 		this.creador = creador;
 	}
 
