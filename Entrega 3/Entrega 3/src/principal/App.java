@@ -8,6 +8,7 @@ public class App {
 	
 	private Usuario usuarioActual;
 	private Proyecto proyectoActual = null;
+	private Impresora impresora = new Impresora();
 	
 	public App() {
 		System.out.println("-------------------- APP -------------------- ");
@@ -38,12 +39,17 @@ public class App {
 				
 				crearActividad();
 			} 
+			else if (opcion == 3){	
+				agregarUsuario();
+			} 
+			else if (opcion == 4){	
+				guardarEnArchivo();
+			} 
 			else if (opcion == 0){
 				
 				continuar = false;
 				
-			}
-			
+			}	
 			
 		}
 		
@@ -114,6 +120,20 @@ public class App {
 		
 	}
 	
+	public void agregarUsuario() {
+		
+		String nombre = input("Nombre del usuario: \n");
+		String correo = input("Correo del usuario: \n");
+		
+		proyectoActual.agregarUsuarioSec(new Usuario(nombre, correo)); 
+		
+	}
+	
+	public void guardarEnArchivo() {
+		impresora.CrearArch(proyectoActual.generarReporteTxt(), proyectoActual.darNombre());
+		System.out.println("Se genero el Archivo");
+	}
+	
 	// Metodos Imprimir
 	
 	public void ImprimirInfoUsuario() {
@@ -135,6 +155,10 @@ public class App {
 		System.out.println("1) Crear nuevo proyecto");
 		
 		System.out.println("2) Agregar una actividad al proyecto actual:");
+		
+		System.out.println("3) Agregar Usuario secundario al proyecto actual:");
+		
+		System.out.println("4) Guardar dartos en un archivo:");
 		
 		System.out.println("0) Cerrar App");
 	}

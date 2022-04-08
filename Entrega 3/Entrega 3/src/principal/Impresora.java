@@ -6,7 +6,7 @@ import java.io.FileWriter;
 
 public class Impresora {
 
-	public static void CrearArch(String texto, String nombre) {
+	public void CrearArch(String texto, String nombre) {
 
 		try {
 
