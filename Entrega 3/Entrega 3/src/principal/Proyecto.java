@@ -10,6 +10,8 @@ public class Proyecto {
 	private String fechaFinal;
 	private String tipo;
 	private ArrayList<Actividad> actividades;
+	private Usuario principal;
+	
 	
 	public Proyecto(String nom, String desc, String fechIn, String fechFin, String tip, Usuario usu) {
 		
@@ -23,13 +25,12 @@ public class Proyecto {
 		setActividades(act);
 	}
 	
+// Get y Set
+	
 	public void agregarActividad(Actividad activity) 
 	{
 		this.actividades.add(activity);
 	}
-	
-
-	
 	
 	public String getNombre() {
 		return nombre;
@@ -70,8 +71,6 @@ public class Proyecto {
 	public void setPrincipal(Usuario principal) {
 		this.principal = principal;
 	}
-
-	private Usuario principal;
 	
 	public String darNombre() {
 		return nombre;
@@ -92,5 +91,6 @@ public class Proyecto {
 	public void setActividades(ArrayList<Actividad> actividades) {
 		this.actividades = actividades;
 	}
+	
 	
 }

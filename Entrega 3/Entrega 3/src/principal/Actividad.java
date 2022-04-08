@@ -18,6 +18,8 @@ public class Actividad {
 		this.fecha= date;
 		this.creador= creator;
 	}
+	
+	// Get y Set
 
 	public String getTitulo() {
 		return titulo;
@@ -74,6 +76,7 @@ public class Actividad {
 	public void setHoraParcial(String horaParcial) {
 		this.horaParcial = horaParcial;
 	}
+	
 	
 
 }
