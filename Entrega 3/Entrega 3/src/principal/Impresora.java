@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 
 public class Impresora {
 	
@@ -27,6 +28,7 @@ public class Impresora {
 	
 	private String nomUsu2;
 	private String corUsu2;
+	private ArrayList<Usuario> secundarios = new ArrayList<Usuario>();
 
 	public void CrearArch(String texto, String nombre) {
 
@@ -51,7 +53,7 @@ public class Impresora {
 
 	}
 	
-	public Proyecto leerArch(String nombre) {
+	public void leerArch(String nombre) {
 		
 		try {
 
@@ -71,13 +73,17 @@ public class Impresora {
 			
 			//System.out.println(this.nombre + " 1 " + descripcion + " 2 " + fechaInicial + " 3 " + fechaFinal + " 4 " + tipo + " 5 " + nomUsuario + " 6 " + corUsuario);
 			Proyecto proy = new Proyecto(this.nombre, descripcion, fechaInicial, fechaFinal, tipo, principal);
+			app.cambiarProyecto(proy);
 			
-			return proy;
+			for (Usuario x: secundarios) {
+				
+				app.agregarUsuarioCon(x);
+			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
 		
 	}
 	
@@ -104,7 +110,8 @@ public class Impresora {
 			nomUsu2 = secundaria[1];
 		} else if ("Correo:".equals(secundaria[0])) {
 			corUsu2 = secundaria[1];
-			app.agregarUsuarioCon(nomUsu2, corUsu2);
+			secundarios.add(new Usuario(nomUsu2, corUsu2));
+			//app.agregarUsuarioCon(nomUsu2, corUsu2);
 		} 
 		
 	}

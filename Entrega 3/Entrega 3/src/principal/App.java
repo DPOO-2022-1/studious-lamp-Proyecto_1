@@ -123,6 +123,10 @@ public class App {
 		
 	}
 	
+	public void cambiarProyecto(Proyecto proy) {
+		proyectoActual = proy;
+	}
+	
 	public void agregarUsuario() {
 		
 		String nombre = input("Nombre del usuario: \n");
@@ -132,9 +136,9 @@ public class App {
 		
 	}
 	
-	public void agregarUsuarioCon(String nom, String cor) {
+	public void agregarUsuarioCon(Usuario us) {
 		
-		proyectoActual.agregarUsuarioSec(new Usuario(nom, cor)); 
+		proyectoActual.agregarUsuarioSec(us); 
 		
 	}
 	
@@ -146,7 +150,7 @@ public class App {
 	public void leerArchivo() {
 		
 		String nombre = input("Cual es el nombre del proyecto que desea buscar");
-		proyectoActual = impresora.leerArch(nombre);
+		impresora.leerArch(nombre);
 		
 	}
 	
