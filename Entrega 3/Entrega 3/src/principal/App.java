@@ -60,7 +60,7 @@ public class App {
 	
 	public void crearActividad() {
 		
-		Actividad actividad= new Actividad("", "", "", "", this.usuarioActual);
+		Actividad actividad= new Actividad("", "", "", "", "",this.usuarioActual);
 		
 		if(proyectoActual == null) 
 		{
@@ -73,7 +73,19 @@ public class App {
 			String descripcion = input("Ingrese una descripción para la actividad:\n");
 			actividad.setDescripcion(descripcion);
 			String fechaIn = input("Digite la fecha de inicio de la actividad:\n");
-			actividad.setFecha(fechaIn);
+			Boolean fecha_pasada = false;
+			String es_pasada = input("Digite 1 si va a iniciar un contador par la fecha inicial, 0 si ingresara una fecha inicial antigua");
+			if( es_pasada == "0") {
+				fecha_pasada = true;
+			}
+			actividad.setFecha_inicial(fechaIn, fecha_pasada);
+			String fechaFin = input("Digite la fecha de inicio de la actividad:\n");
+			Boolean fecha_pasada1 = false;
+			String es_pasada1 = input("Digite 1 si va a iniciar un contador par la fecha inicial, 0 si ingresara una fecha inicial antigua");
+			if( es_pasada1 == "0") {
+				fecha_pasada1 = true;
+			}
+			actividad.setFecha_final(fechaFin,fecha_pasada1);
 			String tipo = input("Digite el tipo de actividad que se realiza:\n");
 			actividad.setTipo(tipo);
 			System.out.println("Por defecto el usuario que realiza la actividad es el usuario actual ¿Desea cambiar el usuario que la realiza?\n");
