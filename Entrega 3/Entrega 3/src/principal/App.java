@@ -8,7 +8,6 @@ public class App {
 	
 	private Usuario usuarioActual;
 	private Proyecto proyectoActual = null;
-	private Impresora impresora = new Impresora(this);
 	
 	public App() {
 		System.out.println("-------------------- APP -------------------- ");
@@ -39,20 +38,12 @@ public class App {
 				
 				crearActividad();
 			} 
-			else if (opcion == 3){	
-				agregarUsuario();
-			} 
-			else if (opcion == 4){	
-				guardarEnArchivo();
-			} 
-			else if (opcion == 5){	
-				leerArchivo();
-			} 
 			else if (opcion == 0){
 				
 				continuar = false;
 				
-			}	
+			}
+			
 			
 		}
 		
@@ -72,20 +63,31 @@ public class App {
 			actividad.setTitulo(nombre);
 			String descripcion = input("Ingrese una descripción para la actividad:\n");
 			actividad.setDescripcion(descripcion);
-			String fechaIn = input("Digite la fecha de inicio de la actividad:\n");
+			
 			Boolean fecha_pasada = false;
 			String es_pasada = input("Digite 1 si va a iniciar un contador par la fecha inicial, 0 si ingresara una fecha inicial antigua");
 			if( es_pasada == "0") {
 				fecha_pasada = true;
+				String fechaIn = input("Digite la fecha de inicio de la actividad:\n");
+				actividad.setFecha_inicial(fechaIn, fecha_pasada);
 			}
-			actividad.setFecha_inicial(fechaIn, fecha_pasada);
-			String fechaFin = input("Digite la fecha de inicio de la actividad:\n");
+			else {
+				String fechaIn = "";
+				actividad.setFecha_inicial(fechaIn, fecha_pasada);
+			}
+			
 			Boolean fecha_pasada1 = false;
 			String es_pasada1 = input("Digite 1 si va a iniciar un contador par la fecha inicial, 0 si ingresara una fecha inicial antigua");
 			if( es_pasada1 == "0") {
 				fecha_pasada1 = true;
+				String fechaFin = input("Digite la fecha de final de la actividad:\n");
+				actividad.setFecha_final(fechaFin,fecha_pasada1);
 			}
-			actividad.setFecha_final(fechaFin,fecha_pasada1);
+			else{
+				String fechaFin = "";
+				actividad.setFecha_final(fechaFin,fecha_pasada1);
+			}
+			}
 			String tipo = input("Digite el tipo de actividad que se realiza:\n");
 			actividad.setTipo(tipo);
 			System.out.println("Por defecto el usuario que realiza la actividad es el usuario actual ¿Desea cambiar el usuario que la realiza?\n");
@@ -105,8 +107,17 @@ public class App {
 			proyectoActual.agregarActividad(actividad);
 			
 		}
+	
+	public void cambiarProyecto(Proyecto proy) {
+		proyectoActual = proy;
+	}
+		
+	public void agregarUsuarioCon(Usuario us) {
+		
+		proyectoActual.agregarUsuarioSec(us); 
 		
 	}
+	
 	
 	public void crearProyecto() {
 		
@@ -135,37 +146,6 @@ public class App {
 		
 	}
 	
-	public void cambiarProyecto(Proyecto proy) {
-		proyectoActual = proy;
-	}
-	
-	public void agregarUsuario() {
-		
-		String nombre = input("Nombre del usuario: \n");
-		String correo = input("Correo del usuario: \n");
-		
-		proyectoActual.agregarUsuarioSec(new Usuario(nombre, correo)); 
-		
-	}
-	
-	public void agregarUsuarioCon(Usuario us) {
-		
-		proyectoActual.agregarUsuarioSec(us); 
-		
-	}
-	
-	public void guardarEnArchivo() {
-		impresora.CrearArch(proyectoActual.generarReporteTxt(), proyectoActual.darNombre());
-		System.out.println("Se genero el Archivo");
-	}
-	
-	public void leerArchivo() {
-		
-		String nombre = input("Cual es el nombre del proyecto que desea buscar");
-		impresora.leerArch(nombre);
-		
-	}
-	
 	// Metodos Imprimir
 	
 	public void ImprimirInfoUsuario() {
@@ -187,12 +167,6 @@ public class App {
 		System.out.println("1) Crear nuevo proyecto");
 		
 		System.out.println("2) Agregar una actividad al proyecto actual:");
-		
-		System.out.println("3) Agregar Usuario secundario al proyecto actual:");
-		
-		System.out.println("4) Guardar datos en un archivo:");
-		
-		System.out.println("5) Abrir un archivo:");
 		
 		System.out.println("0) Cerrar App");
 	}
