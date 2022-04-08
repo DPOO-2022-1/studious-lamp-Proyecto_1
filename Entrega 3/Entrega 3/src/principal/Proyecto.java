@@ -1,7 +1,7 @@
 package principal;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 public class Proyecto {
 	
 	private String nombre;
@@ -117,6 +117,20 @@ public class Proyecto {
 		}
 		
 		return texto1+texto2+texto3;
+	}
+	
+	
+	public HashMap<String, ArrayList<Integer>> darReporteTiempos()
+	{
+		HashMap<String, ArrayList<Integer>> mapa = new HashMap<String, ArrayList<Integer>>();
+		
+		for(Actividad actual: this.actividades) 
+		{
+			ArrayList<Integer> tiempos = new ArrayList<Integer>();
+			mapa.put(actual.getCreador().DarNombre(), null);
+		}
+		return null;
+		
 	}
 	
 }
