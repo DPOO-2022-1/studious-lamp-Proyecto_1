@@ -8,7 +8,7 @@ public class App {
 	
 	private Usuario usuarioActual;
 	private Proyecto proyectoActual = null;
-	private Impresora impresora = new Impresora();
+	private Impresora impresora = new Impresora(this);
 	
 	public App() {
 		System.out.println("-------------------- APP -------------------- ");
@@ -129,6 +129,12 @@ public class App {
 		String correo = input("Correo del usuario: \n");
 		
 		proyectoActual.agregarUsuarioSec(new Usuario(nombre, correo)); 
+		
+	}
+	
+	public void agregarUsuarioCon(String nom, String cor) {
+		
+		proyectoActual.agregarUsuarioSec(new Usuario(nom, cor)); 
 		
 	}
 	

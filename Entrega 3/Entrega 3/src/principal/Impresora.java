@@ -8,6 +8,11 @@ import java.io.FileWriter;
 
 public class Impresora {
 	
+	public Impresora(App ap) {
+		app = ap;
+	}
+	
+	private App app;
 	
 	private String nombre;
 	private String descripcion;
@@ -18,6 +23,10 @@ public class Impresora {
 	private String nomUsuario;
 	private String corUsuario;
 	private Usuario principal;
+	
+	
+	private String nomUsu2;
+	private String corUsu2;
 
 	public void CrearArch(String texto, String nombre) {
 
@@ -91,7 +100,12 @@ public class Impresora {
 		} else if ("CorreoPrin:".equals(secundaria[0])) {
 			corUsuario = secundaria[1];
 			principal = new Usuario(nomUsuario, corUsuario);
-		}
+		} else if ("Usuario:".equals(secundaria[0])) {
+			nomUsu2 = secundaria[1];
+		} else if ("Correo:".equals(secundaria[0])) {
+			corUsu2 = secundaria[1];
+			app.agregarUsuarioCon(nomUsu2, corUsu2);
+		} 
 		
 	}
 	
