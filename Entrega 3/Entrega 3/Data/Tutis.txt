@@ -1,0 +1,13 @@
+nombreProy: Tutis
+Descripcion: asd
+Tipo: asd
+FechaIni: asd
+FechaFin: no
+
+Usuario Principal
+
+UsuarioPrin: David
+CorreoPrin: d.bur
+
+Usuarios Secundarios
+

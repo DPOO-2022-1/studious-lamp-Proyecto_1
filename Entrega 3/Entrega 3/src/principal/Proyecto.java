@@ -106,13 +106,13 @@ public class Proyecto {
 		String texto1 = "nombreProy: " + nombre + "\nDescripcion: " + descripcion + "\nTipo: " + tipo + "\nFechaIni: " + 
 		fechaInicial + "\nFechaFin: " + fechaFinal + "\n\nUsuario Principal\n\n";
 		
-		String texto2 = "UsuarioPrin: " + principal.DarNombre() + "\nCorreo: " + principal.DarCorreo();
+		String texto2 = "UsuarioPrin: " + principal.DarNombre() + "\nCorreoPrin: " + principal.DarCorreo();
 		
 		String texto3 = "\n\nUsuarios Secundarios\n\n";
 		
 		for(Usuario x: usuariosSec) {
 			
-			String textoMom = "Usuario: " + x.DarNombre() + "\nDescripcion: " + x.DarCorreo();
+			String textoMom = "Usuario: " + x.DarNombre() + "\nCorreo: " + x.DarCorreo();
 			texto3 = texto3.concat(textoMom);
 		}
 		

@@ -45,6 +45,9 @@ public class App {
 			else if (opcion == 4){	
 				guardarEnArchivo();
 			} 
+			else if (opcion == 5){	
+				leerArchivo();
+			} 
 			else if (opcion == 0){
 				
 				continuar = false;
@@ -134,6 +137,13 @@ public class App {
 		System.out.println("Se genero el Archivo");
 	}
 	
+	public void leerArchivo() {
+		
+		String nombre = input("Cual es el nombre del proyecto que desea buscar");
+		proyectoActual = impresora.leerArch(nombre);
+		
+	}
+	
 	// Metodos Imprimir
 	
 	public void ImprimirInfoUsuario() {
@@ -158,7 +168,9 @@ public class App {
 		
 		System.out.println("3) Agregar Usuario secundario al proyecto actual:");
 		
-		System.out.println("4) Guardar dartos en un archivo:");
+		System.out.println("4) Guardar datos en un archivo:");
+		
+		System.out.println("5) Abrir un archivo:");
 		
 		System.out.println("0) Cerrar App");
 	}
